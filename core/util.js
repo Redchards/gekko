@@ -3,7 +3,8 @@ var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 var semver = require('semver');
-var program = require('commander');
+const { Command } = require('commander');
+const program = new Command()
 
 var startTime = moment();
 
@@ -114,7 +115,7 @@ var util = {
       importers: ROOT + 'importers/exchanges/',
       tools: ROOT + 'core/tools/',
       workers: ROOT + 'core/workers/',
-      web: ROOT + 'web/',
+      web: ROOT + '../web/',
       config: ROOT + 'config/',
       broker: ROOT + 'exchange/'
     }
@@ -169,6 +170,7 @@ var util = {
 // NOTE: those options are only used
 // in stand alone mode
 program
+  .storeOptionsAsProperties()
   .version(util.logVersion())
   .option('-c, --config <file>', 'Config file')
   .option('-b, --backtest', 'backtesting mode')
